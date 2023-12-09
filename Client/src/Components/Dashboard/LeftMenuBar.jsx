@@ -52,7 +52,7 @@ function LeftMenuBar() {
               </Link>
             </div>
             {/* EMPLOYEES */}
-            {/* <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
+            <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
             {" "}
             <div className="w-1/5">
               <svg
@@ -77,7 +77,7 @@ function LeftMenuBar() {
                 <button className="inline navMenuFont">Employees</button>
               </div>
             </Link>
-          </div> */}
+          </div>
 
             {/* CANDIDATES */}
             <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">

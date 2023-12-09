@@ -9,6 +9,7 @@ const verifyForgetPwd = require('../Controllers/UserController/verifyForgetpwd.j
 const VerifyMail = require('../Controllers/UserController/VerifyMail.js');
 const AuthMiddleware = require('../Middleware/AuthMiddleware.js');
 const VerifyToken = require('../Middleware/VerifyToken.js');
+const GetEmployee = require('../Controllers/Employee/GetEmployee.js')
 
 const UserRouter = express.Router();
 
@@ -49,4 +50,6 @@ UserRouter.post("/new-password", updatePassword)
 UserRouter.post("/home", AuthMiddleware, VerifyToken)
 UserRouter.post("/dashboard", Home)
 UserRouter.post("/getProfilePic", GetProfilePicture)
+UserRouter.post("/getEmployee", GetEmployee)
+
 module.exports = UserRouter;

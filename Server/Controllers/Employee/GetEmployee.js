@@ -1,14 +1,17 @@
 const OrganizationModal = require("../../Models/Organization_Model");
 
-const Home = async (req, res, next) => {
-    const { organization_id } = req.body.data;
+const GetEmployee = async (req, res) => {
+
+    const organization_id = req.body.organization_id
+
     const organizaion = await OrganizationModal.findById(organization_id);
     if (organizaion) {
-        return res.status(200).json({ organizaion })
+        const { team_members} = organizaion;
+        return res.status(200).json(team_members)
     }
     else {
         res.status(404).json({ message: "No organization found , enter valid organization" });
     }
 }
 
-module.exports = Home;
+module.exports = GetEmployee;
