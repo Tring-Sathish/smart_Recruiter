@@ -131,7 +131,7 @@ function Login() {
                 ) : null}
               </div>
               <div className="flex justify-start mt-8">
-                <div className="hidden sm:block">
+                {/* <div className="hidden sm:block">
                   <input
                     type="checkbox"
                     // checked="checked"
@@ -140,7 +140,7 @@ function Login() {
                   <label htmlFor="" className="ml-2 line2">
                     keep me login
                   </label>
-                </div>
+                </div> */}
 
                 <div className=" ml-0  sm:ml-24">
                   <Link to={"/forgetpwd"} className="line1 cursor-pointer">
@@ -177,7 +177,7 @@ function Login() {
                 Signup
               </Link>
             </h4>
-            <div>
+            {/* <div>
               <h4 className="inline line2 text-secondrytext ml-0 sm:ml-12">
                 Explore Jobs?
                 <Link
@@ -187,7 +187,7 @@ function Login() {
                   View
                 </Link>
               </h4>
-            </div>
+            </div> */}
           </div>
         </div>
         {/* 2nd Div */}

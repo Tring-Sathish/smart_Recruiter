@@ -44,7 +44,7 @@ function Setting_EditProfile() {
       formData.append("userId", org_id); // Replace userId with the actual user ID
 
       axios
-        .post("http://localhost:3000/settings/updateProfile", formData)
+        .post("http://localhost:8080/settings/updateProfile", formData)
         .then((response) => {
           console.log(response.data);
         })
@@ -118,13 +118,13 @@ function Setting_EditProfile() {
         <div className="w-4/5 m-auto">
           <h2 className="heading3 mb-4">Update Logo</h2>
 
-          <form action=""></form>
+          <form action="">
           <input
             type="file"
             accept="image/*"
             onChange={handleFileChange}
             className="file-input file-input-bordered w-full max-w-xs"
-          />
+          /></form>
         </div>
         <button
           onClick={updateProfilePic}

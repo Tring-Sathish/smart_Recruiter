@@ -85,13 +85,13 @@ const CandidateSchema = new mongoose.Schema({
 
     profilePic: {
         type: String,
-        required: false,
+        required: true,
     },
 
 
     ResumeURL: {
         type: String,
-        required: false,
+        required: true,
     }
 
     ,

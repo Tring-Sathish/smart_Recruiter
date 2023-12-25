@@ -2,7 +2,6 @@ const express = require("express");
 const Candidate = require("../../Models/Candidate");
 
 const FilterCandidates = async (req, res, next) => {
-    console.log("running now");
 
     const { filter_value } = req.body;
     const BSCandidates = await Candidate.find();
@@ -27,9 +26,6 @@ const FilterCandidates = async (req, res, next) => {
         const str = filter_value;
         const value = str.split(":")[1].trim();
         //Now checking that city_value in DB
-        console.log('I AM RUNNING');
-        console.log(filter_value);
-        console.log(value);
         if (value == 0) {
             const result = BSCandidates.filter((level) => level.duration <= 1);
             return res.status(200).json(result);

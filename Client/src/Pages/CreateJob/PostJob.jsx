@@ -14,27 +14,27 @@ function PostJob() {
   const [apiFetched, setAPIFetched] = useState(false);
   const [description, setDescription] = useState("");
 
-  const [formData, setFormData] = useState({
-    postition: "",
-    office_location: "",
-    department: "",
-    job_type: "",
-    no_of_seats: "",
-    salary_range_from: "",
-    salary_range_upto: "",
-  });
   const [department, setDepartments] = useState([]);
   const [officeLocation, setOfficeLocation] = useState();
   const count = useSelector(
     (state) => state.OrganizationDetailsReducer.apiData
   );
-  // console.log(count);
+  console.log(count);
   var org_data = [];
   org_data.push(count?.[8][1]);
   org_data.push(count?.[9][1]);
   org_data.push(count?.[2][1]);
   org_data.push(count?.[0][1]);
-  // console.log(count[8][1]);
+
+  const [formData, setFormData] = useState({
+    postition: "",
+    office_location: count?.[8][1],
+    department: count?.[6][1][0],
+    job_type: "",
+    no_of_seats: "",
+    salary_range_from: "",
+    salary_range_upto: "",
+  });
 
   const imgFilehandler = (e) => {
     if (e.target.files.length !== 0) {
@@ -178,13 +178,13 @@ function PostJob() {
                 onClick={(e) => {
                   setFormData((old) => ({
                     ...old,
-                    office_location: e.target.value,
+                    office_location: e.target.value || formData.office_location,
                   }));
                 }}
                 value={formData.office_location}
                 className="select select-bordered w-full max-w-xs font-medium line1"
               >
-                <option disabled selected>
+                <option  defaultChecked disabled>
                   Select office location{" "}
                 </option>
 
@@ -203,13 +203,13 @@ function PostJob() {
                 onChange={(e) => {
                   setFormData((old) => ({
                     ...old,
-                    department: e.target.value,
+                    department: e.target.value  || formData.department,
                   }));
                 }}
                 value={formData.department}
                 className=" select select-bordered w-full max-w-xs font-medium line1"
               >
-                <option disabled selected>
+                <option disabled defaultChecked>
                   Select Department{" "}
                 </option>
                 {count?.[6][1].map((option) => (
@@ -231,13 +231,13 @@ function PostJob() {
                   console.log("jobtype",e.target.value)
                   setFormData((old) => ({
                     ...old,
-                    job_type: e.target.value,
+                    job_type: e.target.value  || formData.job_type,
                   }));
                 }}
                 value={formData.job_type}
                 className="select select-bordered w-full max-w-xs font-medium line1"
               >
-                <option disabled selected>
+                <option defaultChecked>
                   Full / Part Time{" "}
                 </option>
                 <option value={"Full Time"}>Full Time</option>

@@ -40,10 +40,8 @@ RecruitmentRouter.post("/active/reccomended", GetReccomendedCandidates);
 RecruitmentRouter.post("/active/reccomended/details", GetReccomendedCandidatesDetails);
 RecruitmentRouter.post("/active/hired", GetHiredCandidate);
 RecruitmentRouter.post("/active/hired/sendEmail", SentHiredEmail);
-
 RecruitmentRouter.post("/active/rejected", GetReccomendedCandidates);
 RecruitmentRouter.post("/active/withdrawn", GetWithdrawnCandidate);
-
 RecruitmentRouter.post("/active/withdrawn/details", GetWithdrawnCandidateDetails);
 RecruitmentRouter.post("/active/withdrawn/details/updateReason", UpdateWithdrawnReason);
 

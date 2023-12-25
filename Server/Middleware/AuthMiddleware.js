@@ -4,7 +4,6 @@ const secretKey = 'mysecretkey'; // replace with your secret key
 function AuthMiddleware(req, res, next) {
     var authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith('Bearer ')) {
-        // check if the header starts with "Bearer " prefix
         const token = authHeader.split(' ')[1]; // split the header and get the token part
         authHeader = token;
     }
@@ -12,7 +11,6 @@ function AuthMiddleware(req, res, next) {
         if (error) {
             return res.status(400).send({ message: "invalid token" })
         }
-
         else {
             req.body.userID = data.id;
             next();

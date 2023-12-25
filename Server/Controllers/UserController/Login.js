@@ -14,7 +14,6 @@ const login = async (req, res, next) => {
     }
     try {
         const findUser = await userModel.findOne({ email: email });
-        console.log(22,findUser)
         if (!findUser) {
             return res.status(404).json({
                 error: "No such user found",
@@ -28,7 +27,6 @@ const login = async (req, res, next) => {
         }
 
         const unhashed = await bcrypt.compare(password, findUser.password);
-        console.log(51,unhashed)
         if (!unhashed) {
             return res.status(401).json({
                 error: "Incorrect password",
@@ -41,7 +39,6 @@ const login = async (req, res, next) => {
         };
 
         const token = jwt.sign(payload, process.env.KEY, { expiresIn: "96h" });
-        console.log(63,token)
         return res.status(200).json({
             message: "Login successful",
             token: token,

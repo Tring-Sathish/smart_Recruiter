@@ -94,7 +94,7 @@ function Registration() {
 
   return (
     <div className="flex h-screen bg-background">
-      <div className="m-auto flex  w-full sm:w-3/4 h-5/6 sm:h-5/6  shadows">
+      <div className="m-auto flex  w-full sm:w-3/4 sm:h-6/6  shadows">
         <div className="w-2/5 shadows hidden sm:block ">
           <img
             className="h-full w-full"

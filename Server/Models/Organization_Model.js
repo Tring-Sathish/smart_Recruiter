@@ -62,14 +62,7 @@ const OrganizationSchema = new mongoose.Schema({
         type: String,
         required: [true, 'YT URL is required'],
     },
-    // team_members: [
-
-    //     {
-    //         name: String,
-    //         email: String,
-    //         role: String
-    //     }
-    // ]
+    
     team_members: [{
 
         name: { type: String, required: true },

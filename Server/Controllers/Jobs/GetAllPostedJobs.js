@@ -1,8 +1,6 @@
 const express = require('express');
 const Job = require('../../Models/JobModel');
-
 const app = express();
-
 
 const GetAllPostedJobs = async (req, res, next) => {
 

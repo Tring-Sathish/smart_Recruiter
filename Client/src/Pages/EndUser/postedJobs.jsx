@@ -39,13 +39,13 @@ function PostedJobs() {
             Get Hired
           </h2>
         </div>
-        <div className="absolute left-96 z-20 ">
+        {/* <div className="absolute left-96 z-20 ">
           <img
             src={Banner}
             className="w-1/2 relative left-96 ml-44 -mt-24 "
             alt=""
           />
-        </div>
+        </div> */}
       </div>
       <div className="bg-gray-50 bg-opacity-5 rounded-md p-4 shadow-md mt-2">
         <h2 className="heading2 mt-4 text-center font-bold text-gray-300">

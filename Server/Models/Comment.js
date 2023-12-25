@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const CandidateComments = new mongoose.Schema({
 
-
     CandidateID: {
         type: String,
         required: true

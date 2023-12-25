@@ -14,6 +14,8 @@ function AppliedApplicantProfile({ id }) {
   const [modal, setModal] = useState(false);
   const [modalValue, setModalValue] = useState("none");
   const [userData, setUserData] = useState();
+  const [imageSrc, setImageSrc] = useState("http://127.0.0.1:8081/uploads/")
+  const [resumeSrc, setResumeSrc] = useState("http://127.0.0.1:8081/uploads/")
   useEffect(() => {
     const fetchData = () => {
       // axios POST request
@@ -29,13 +31,18 @@ function AppliedApplicantProfile({ id }) {
 
       axios(options).then((response) => {
         setUserData(response.data);
+        const img_url = response?.data?.profilePic.split("\\")
+        const resume_url = response?.data?.ResumeURL.split("\\")
+        setImageSrc(imageSrc + img_url[1])
+        setResumeSrc(resumeSrc + resume_url[1])
+
       });
     };
     fetchData();
   }, [0]);
   return (
     <div>
-      {modal !== false ? (
+      {modal && (
         <div
           style={{ display: modalValue, background: "rgba(95,100,100,0.2)" }}
           className="w-4/5 h-4/5  rounded-lg absolute  left-56 top-1/4 p-4 modalShadow"
@@ -53,13 +60,13 @@ function AppliedApplicantProfile({ id }) {
           </button>
           <object
             className="rounded-xl ml-1"
-            data={userData.profilePic}
+            data={resumeSrc}
             type="application/pdf"
             width="100%"
             height="100%"
           ></object>
         </div>
-      ) : undefined}
+      )}
 
       {userData !== null ? (
         <>
@@ -68,14 +75,15 @@ BASIC PROFILE AREA
 ~~~~~~~~~~~~~~~~ */}{" "}
           <div className=" flex">
             <div className="flex w-4/6  items-center">
-              <div className="">
+              { imageSrc && <div className="">
                 <img
                   width={120}
-                  src={userData?.ResumeURL}
+                  height={120}
+                  src={imageSrc}
                   alt=""
                   className="rounded-2xl shadow-md"
                 />
-              </div>
+              </div>}
               <div className="ml-4 ">
                 <h2 className="heading3 font-medium">
                   {userData?.firstName + " " + userData?.lastName}

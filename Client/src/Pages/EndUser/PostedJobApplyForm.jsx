@@ -104,8 +104,8 @@ function PostedJobApplyForm() {
     };
 
     const userData = {
-      // image: file,
-      // resume: resume,
+      image: file,
+      resume: resume,
       personalInfo: personalInformation,
       dob: DoB,
       accadamics: educationalInformation,

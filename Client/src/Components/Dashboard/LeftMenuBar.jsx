@@ -1,6 +1,5 @@
 import React from "react";
 import Home from "../../assets/icons/home.svg";
-
 import Employees from "../../assets/icons/employees.svg";
 import Candidates from "../../assets/icons/candidates.svg";
 import Jobs from "../../assets/icons/jobs.svg";
@@ -10,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function LeftMenuBar() {
   const navigate = useNavigate();
+  const org_id = localStorage.getItem("organization_id")
 
   return (
     <>
@@ -52,7 +52,7 @@ function LeftMenuBar() {
               </Link>
             </div>
             {/* EMPLOYEES */}
-            <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
+            { org_id && <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
             {" "}
             <div className="w-1/5">
               <svg
@@ -77,10 +77,10 @@ function LeftMenuBar() {
                 <button className="inline navMenuFont">Employees</button>
               </div>
             </Link>
-          </div>
+          </div>}
 
             {/* CANDIDATES */}
-            <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
+            { org_id && <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
               <div className="w-1/5">
                 <svg
                   className="m-auto"
@@ -104,11 +104,11 @@ function LeftMenuBar() {
                   <button className="inline navMenuFont">Candidates</button>
                 </div>
               </Link>
-            </div>
+            </div>}
 
             {/* JOBS */}
 
-            <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
+            { org_id &&<div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
               <div className="w-1/5">
                 <svg
                   className="m-auto"
@@ -141,10 +141,10 @@ function LeftMenuBar() {
                   <button className="inline navMenuFont">Jobs</button>
                 </div>
               </Link>
-            </div>
+            </div>}
 
             {/* REPORTS */}
-            <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
+            { org_id && <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
               <div className="w-1/5">
                 <svg
                   className="m-auto"
@@ -176,10 +176,10 @@ function LeftMenuBar() {
                   <button className="inline navMenuFont">Statistics</button>
                 </div>
               </Link>
-            </div>
+            </div>}
 
             {/* SETTINGS */}
-            <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
+            { org_id && <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
               <div className="w-1/5">
                 <svg
                   className="m-auto"
@@ -204,12 +204,48 @@ function LeftMenuBar() {
                   <button className="inline navMenuFont">Settings</button>
                 </div>
               </Link>
-            </div>
+            </div>}
+
+            {/* view jobs */}
+            { !org_id && <div className="w-full bg-white hover:bg-blue-100 transition-all duration-[850ms] hover:rounded-lg ease-out py-2  ml-8 mb-2 flex items-center">
+              <div className="w-1/5">
+              <svg
+                  className="m-auto"
+                  width="31"
+                  height="30"
+                  viewBox="0 0 31 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.3334 7.5V6.5C10.3334 4.2875 10.3334 2.5 14.4667 2.5H16.5334C20.6667 2.5 20.6667 4.2875 20.6667 6.5V7.5M10.3334 27.5H20.6667C25.8592 27.5 26.7892 25.4875 27.0605 23.0375L28.0292 13.0375C28.378 9.9875 27.4738 7.5 21.9584 7.5H9.04173C3.52631 7.5 2.62214 9.9875 2.97089 13.0375L3.93964 23.0375C4.21089 25.4875 5.14089 27.5 10.3334 27.5Z"
+                    stroke="#333232"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M27.9647 13.75C25.0534 15.7961 21.6539 17.0948 18.0834 17.525M3.38428 14.0875C6.29053 16.0125 9.57136 17.175 12.9168 17.5375M18.0834 16.25V17.525C18.0834 18.8875 18.0705 20 15.5001 20C12.9426 20 12.9168 18.9 12.9168 17.5375V16.25C12.9168 15 12.9168 15 14.2084 15H16.7918C18.0834 15 18.0834 15 18.0834 16.25Z"
+                    stroke="#333232"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <Link to={"/portal/job"}>
+                <div className="inline ml-2 mt-1">
+                  <button className="inline navMenuFont">view jobs</button>
+                </div>
+              </Link>
+            </div>}
           </div>
         </div>
       </div>
 
-      <Link to={"portal/job"}>
+      {/* <Link to={"portal/job"}>
         <div
           className="flex w-3/5 rounded-md m-auto bg-gray-200 cursor-pointer  justify-center mt-32 items-end p-2
       hover:bg-primary hover:text-white
@@ -217,7 +253,7 @@ function LeftMenuBar() {
         >
           <h4 className="heading3b">View Jobs</h4>
         </div>
-      </Link>
+      </Link> */}
     </>
   );
 }

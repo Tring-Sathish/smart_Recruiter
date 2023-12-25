@@ -7,7 +7,6 @@ const app = express();
 const updatePassword = async (req, res, next) => {
 
     const { password, id } = req.body;
-    console.log(password, id);
     if (!password) {
         return res.status(400).json({ error: "Must fill new-password field." });
     }

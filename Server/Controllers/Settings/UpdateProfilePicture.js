@@ -5,17 +5,24 @@ const cloud = require("../../Config/Cloudnary.js");
 const OrganizationModal = require("../../Models/Organization_Model");
 
 const UpdateProfilePicture = async (req, res, next) => {
-    // // -> Storing selected image to cloud
 
-    const file = req.file;
+    try {
     const userId = req.body.userId;
-    if (file && userId) {
+    if (req.files[0] && userId) {
         const findOrganization = await OrganizationModal.findById(userId);
-        const img = await Cloudinary.v2.uploader.upload(req.file.path);
-        const { url } = img;
-        findOrganization.logo = url;
+        const img =  req.files[0].path;
+        findOrganization.logo = img;
         await findOrganization.save();
         res.send("done")
+    }
+    else {
+        console.log("File or userId missing");
+        res.status(400).send("Bad Request");
+    }
+    }
+    catch (error) {
+        console.error("Error updating profile picture:", error);
+        res.status(500).send("Internal Server Error");
     }
 };
 
