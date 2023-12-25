@@ -27,8 +27,8 @@ const ProfileRouter = async (req, res, next) => {
     const insta_link = req.body.detailed_data.insta_link;
     const yt_link = req.body.detailed_data.yt_link;
     const linkedIn_link = req.body.detailed_data.linkedin_link;
-    const { name, email, role } = req.body.team_details;
-    const data = [{ name, email, role }];
+    // const { name, email, role } = req.body.team_details;
+    // const data = [{ name, email, role }];
     var departments2 = [departments]
     departments2 = departments2[0].list
     const u_id = jwt.decode(req.headers.authorization)
@@ -48,7 +48,7 @@ const ProfileRouter = async (req, res, next) => {
             "linkedIn_url": linkedIn_link,
             "insta_url": insta_link,
             "yt_url": yt_link,
-            "team_members": data
+            // "team_members": data
         })
 
         try {

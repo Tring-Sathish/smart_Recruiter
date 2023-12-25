@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import NavigationTab from "../Dashboard/ProfileCreation/NavigationTab";
 import {
   FaFacebookF,
@@ -6,7 +7,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 
 function Profile_Social3() {
@@ -29,6 +30,73 @@ function Profile_Social3() {
     social_links: socialDetails,
   };
   const navigate = useNavigate();
+
+  // var { Office_Profile } = location.state;
+
+  const data = {
+    name: Office_Profile.office_details.office_Value.name,
+    phone: Office_Profile.office_details.office_Value.phone_no,
+    website_link: Office_Profile.office_details.office_Value.website,
+    // logo_url: Office_Profile.office_details.office_Value.logo.image,
+    departments: {
+      list: Office_Profile.office_details.office_Value.department.options,
+    },
+
+    address: Office_Profile.office_details.office_Value.office_location,
+
+    city: Office_Profile.office_details.office_Value.city,
+    country: Office_Profile.office_details.office_Value.country,
+    region: Office_Profile.office_details.office_Value.region,
+    fb_link: Office_Profile.social_links.facebook_url,
+    insta_link: Office_Profile.social_links.insta_url,
+    linkedin_link: Office_Profile.social_links.linkedin_url,
+    yt_link: Office_Profile.social_links.yt_url,
+  };
+  const logo = Office_Profile.office_details.office_Value.logo.image;
+  // const [team_details, setTeamDetails] = useState({
+  //   name: "null",
+  //   email: "as@asd.com",
+  //   role: "admin",
+  // });
+
+  const cv = {
+    logo: logo,
+    detailed_data: data,
+    // team_details: team_details,
+  };
+  const [type, setType] = useState();
+  const post_Method = () => {
+
+    const options = {
+      url: "http://localhost:8080/profile/setup",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "multipart/form-data",
+        // "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: cv,
+    };
+    axios(options)
+      .then((response) => {
+        console.log(" i am running");
+        console.log(response.status);
+        if (response.status == 200) {
+          navigate("/profilesetup/sucess");
+        } else if (response.status == 400) {
+          alert("Organization is already registered!");
+        } else if (response.status == 404) {
+          alert("NO USER WITH THIS USERNAME EXIST IN THE SYSTEM");
+        } else {
+          alert("Something went wrong, try again with proper data");
+        }
+      })
+      .catch((e) => {
+        alert("Organzation is already registered");
+      });
+  };
+
   return (
     <div>
       {" "}
@@ -125,7 +193,7 @@ function Profile_Social3() {
             </div>
           </div>
         </div>
-        <button
+        {/* <button
           onClick={() =>
             navigate("/profilesetup/addteam", { state: { Office_Profile } })
           }
@@ -133,7 +201,21 @@ function Profile_Social3() {
           className=" mt-12 btnfont btn btn-wide  bg-primary border-none hover:bg-black text-center m-auto block "
         >
           NEXT{" "}
+        </button> */}
+        <button
+          // onClick={() => navigate("/profilesetup/sucess")}
+          onClick={post_Method}
+          type="submit"
+          className=" mt-12 btnfont btn btn-wide  bg-primary border-none hover:bg-black text-center m-auto block "
+        >
+          NEXT{" "}
         </button>
+
+        <Link to="/home">
+          <p className="heading4 text-center mt-2 text-gray-400 cursor-pointer">
+            Go back to HOME
+          </p>
+        </Link>
       </div>
     </div>
   );
