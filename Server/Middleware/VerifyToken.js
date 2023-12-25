@@ -2,7 +2,6 @@ const userModel = require("../Models/User_Model");
 
 const VerifyToken = async (req, res, next) => {
 
-
     try {
         const findUser = await userModel.findById({ _id: req.body.userID })
         if (findUser) {
@@ -14,8 +13,6 @@ const VerifyToken = async (req, res, next) => {
     } catch (error) {
         console.log(error);
     }
-
-
 }
 
 module.exports = VerifyToken;

@@ -41,6 +41,7 @@ function InterviewingCandidateListCard({ id }) {
       {user?.length !== 0 ? (
         user?.map((e, index) => {
           var educationLevelLastValue = e?.level.slice(-1)[0];
+          const img_url = e?.profilePic.split("\\");
           return (
             <div
               key={index}
@@ -50,12 +51,17 @@ function InterviewingCandidateListCard({ id }) {
             >
               <div className="w-4/5 block m-auto bg-white h-auto p-5  shadow-md rounded-md hover:bg-gray-50 hover:border border-solid border-gray-300  cursor-pointer  ">
                 <div className="  flex  flex-wrap sm:flex-nowrap justify-between items-center">
-                  <div className="m-auto ">
+                  <div className="flex w-4/6  items-center" style={{
+                          "margin-right": "-40%",                          
+                        }}>
                     <img
-                      width={150}
-                      src={e?.ResumeURL}
+                       style={{
+                        "height": "130px",
+                        "width" : "25%"
+                      }}
+                      src={"http://127.0.0.1:8081/uploads/" + "" + img_url[1]}
                       alt=""
-                      className="rounded-full "
+                      className="rounded-lg "
                     />
                   </div>
                   {/* 2nd Profile Info */}

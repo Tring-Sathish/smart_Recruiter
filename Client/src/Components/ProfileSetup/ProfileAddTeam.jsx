@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import NavigationTab from "../Dashboard/ProfileCreation/NavigationTab";
+// import { jwtDocode } from 'jwt-decode' // import dependency
+
 
 function ProfileAddTeam() {
   const navigate = useNavigate();
@@ -10,17 +12,11 @@ function ProfileAddTeam() {
 
   var { Office_Profile } = location.state;
 
-  // console.log(Office_Profile);
-
-  //new object for POST API
   const data = {
     name: Office_Profile.office_details.office_Value.name,
     phone: Office_Profile.office_details.office_Value.phone_no,
     website_link: Office_Profile.office_details.office_Value.website,
-
-    logo_url: {
-      url: Office_Profile.office_details.office_Value.logo.image,
-    },
+    // logo_url: Office_Profile.office_details.office_Value.logo.image,
     departments: {
       list: Office_Profile.office_details.office_Value.department.options,
     },
@@ -35,37 +31,33 @@ function ProfileAddTeam() {
     linkedin_link: Office_Profile.social_links.linkedin_url,
     yt_link: Office_Profile.social_links.yt_url,
   };
-  const logo = {
-    url: Office_Profile.office_details.office_Value.logo.image,
-  };
-
-  // console.log(data);
+  const logo = Office_Profile.office_details.office_Value.logo.image;
   const [team_details, setTeamDetails] = useState({
     name: "null",
     email: "as@asd.com",
     role: "admin",
   });
 
-  console.log(data);
-
   //let's try with another object and pass it as a data
-
+  // const userID = localStorage.getItem('token');
+  // const user = jwtDocode(userID);
+  // console.log(user);
   const cv = {
-    logo: logo.url,
+    logo: logo,
     detailed_data: data,
     team_details: team_details,
   };
   const [type, setType] = useState();
   const post_Method = () => {
-    // axios POST request
+
     const options = {
       url: "http://localhost:8080/profile/setup",
       method: "POST",
       headers: {
         Accept: "application/json",
         Authorization: localStorage.getItem("token"),
-        // "Content-Type": "multipart/form-data",
-        "Content-Type": "application/json;charset=UTF-8",
+        "Content-Type": "multipart/form-data",
+        // "Content-Type": "application/json;charset=UTF-8",
       },
       data: cv,
     };

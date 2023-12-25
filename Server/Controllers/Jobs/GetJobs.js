@@ -6,7 +6,6 @@ const app = express();
 const GetJob = async (req, res, next) => {
 
     const { id } = req.body;
-    console.log(id);
     if (!id) {
         return res.status(440).json({ message: "on id found" });
     }

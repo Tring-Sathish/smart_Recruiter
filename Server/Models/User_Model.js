@@ -5,7 +5,7 @@ const userSchema = new mongo.Schema({
         type: String,
         required: [true, "First name is must"]
     },
-
+    
     username: {
         type: String,
         required: [true, "Last name is must"],
@@ -39,13 +39,7 @@ const userSchema = new mongo.Schema({
     org_id: {
         type: String, default: '0'
     }
-    // passwordResetExpires: {
-    //     type: Date,
-    // }
-
 })
 
-
 const userModel = mongo.model('user', userSchema)
-
 module.exports = userModel;

@@ -12,6 +12,7 @@ import NoUser from "../../assets/illustrations/no_user.svg";
 function JobDetails() {
   const { id } = useParams();
   const [candidates, setCandidates] = useState();
+  const [imageSrc, setImageSrc] = useState("http://127.0.0.1:8081/uploads/");
   useEffect(() => {
     const fetchData = () => {
       // dispath(startFetchingCandidatesData());
@@ -66,6 +67,7 @@ function JobDetails() {
               COMPONENTS */}
               {candidates?.length !== 0 ? (
                 candidates?.map((e, index) => {
+                  const img_url = e?.profilePic.split("\\");
                   return (
                     <>
                       <div
@@ -75,13 +77,17 @@ function JobDetails() {
                       >
                         {/* CANIDATE PROFILE PICTURE */}
 
-                        <div className="">
-                          <img
-                            width={120}
-                            height={120}
-                            src={e?.ResumeURL}
+                        <div className="flex w-4/6  items-center" style={{
+                          "margin-right": "-40%",
+                        }}>
+                          <img className="rounded-lg"
+                            style={{
+                              "height": "80%",
+                              "width" : "25%"
+                            }}
+                            src={"http://127.0.0.1:8081/uploads/" + "" + img_url[1]}
                             alt=""
-                            className="rounded-full w-16 md:w-28 lg:w-28"
+                            // className="rounded-full w-16 md:w-28 lg:w-28"
                           />
                         </div>
                         {/* EDUCATION , CITY AND EXPERINCE STAT UI */}
