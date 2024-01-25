@@ -18,7 +18,7 @@ function MainPageOfSetting() {
         </div>
 
         <div className="p-6 mt-12 flex flex-wrap gap-20 w-9/12 m-auto">
-          <Link to={"profile"}>
+          {/* <Link to={"profile"}>
             <div className="w-48 h-auto bg-white p-3 rounded-md shadow-md cursor-pointer hover:bg-gray-50 hover:modalShadow">
               <img className="m-auto" src={ProfileIcon} alt="" />
 
@@ -26,7 +26,7 @@ function MainPageOfSetting() {
                 Edit Profile
               </h2>
             </div>
-          </Link>
+          </Link> */}
 
           {/* //2nd value */}
           <Link to={"/forgetpwd"}>
