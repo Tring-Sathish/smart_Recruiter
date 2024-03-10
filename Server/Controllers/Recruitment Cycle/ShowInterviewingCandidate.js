@@ -4,8 +4,7 @@ const Candidate = require('../../Models/Candidate');
 const ShowInterviewingCandidate = async (req, res, next) => {
 
 
-    const { id } = req.body.id;
-
+    const { id } = req.body;
     const findInterviewingCandidates = await Candidate.find({
         recruitmentCycle: 'Interviewing',
         jobID: id

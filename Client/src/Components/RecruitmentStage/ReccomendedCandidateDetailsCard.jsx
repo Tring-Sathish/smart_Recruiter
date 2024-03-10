@@ -136,7 +136,7 @@ function ReccomendedCandidateDetailsCard({ id, user, SetUser, setID }) {
               <FcAssistant className="inline text-2xl relative bottom-1" />{" "}
               Interview Date :{" "}
             </h2>
-            <p className="inline heading4">{user?.interviewDate}</p>
+            <p className="inline heading4">{user?.interviewDate === "nill" ? "--" : user?.interviewDate }</p>
           </div>
 
           <div className="w-1/2">

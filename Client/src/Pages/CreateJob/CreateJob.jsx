@@ -6,6 +6,8 @@ import CreatedJobElement from "../../Components/Dashboard/CreateJob/CreatedJobEl
 import CreateJobHeadaer from "../../Components/Dashboard/CreateJob/CreateJobHeadaer";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
+import Illustration from "../../assets/illustrations/no_user.svg";
+
 function CreateJob() {
   const [data, setData] = useState();
   useEffect(() => {
@@ -30,7 +32,6 @@ function CreateJob() {
 
     fetchData();
   }, []);
-
   return (
     <div className="flex bg-white">
       <div className="hidden sm:block w-2/12 bg-white h-screen ">
@@ -42,10 +43,20 @@ function CreateJob() {
 
           <CreateJobHeadaer setData={setData} />
         </div>
-
-        <div className="ml-8 flex flex-wrap  gap-6 mt-12 w-11/12 m-auto p-2">
-          <CreatedJobElement data={data} setData={setData} />
-        </div>
+        { data?.length != 0 ? 
+           <div className="ml-8 flex flex-wrap  gap-6 mt-12 w-11/12 m-auto p-2">
+           <CreatedJobElement data={data} setData={setData} />
+         </div> :
+          <><img
+          src={Illustration}
+          width={350}
+          height={300}
+          className="block m-auto mt-20"
+          ></img>
+          <h2 className="heading2b text-center mt-12">
+            No Posted Jobs
+          </h2></>
+        }
       </div>
     </div>
   );

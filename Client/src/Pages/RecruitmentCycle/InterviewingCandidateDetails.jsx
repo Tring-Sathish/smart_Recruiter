@@ -252,7 +252,7 @@ function InterviewingCandidateDetails() {
                       spring: { damping: 50, stiffness: 100 },
                     }}
                   >
-                    {candidateDetails?.interviewDate}
+                    {candidateDetails?.interviewDate === "nill" ? "--" : candidateDetails?.interviewDate }
                   </motion.p>
                 </div>
 
@@ -266,7 +266,7 @@ function InterviewingCandidateDetails() {
                       spring: { damping: 50, stiffness: 100 },
                     }}
                   >
-                    {candidateDetails?.interviewTime}
+                    {candidateDetails?.interviewTime === "nill" ? "--" : candidateDetails?.interviewTime }
                   </motion.p>
                 </div>
               </div>
