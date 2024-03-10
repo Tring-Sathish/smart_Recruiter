@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
 import { useNavigate } from "react-router-dom";
+import Illustration from "../../assets/illustrations/no_user.svg";
 
 function Jobss() {
   const [data, setData] = useState();
@@ -30,10 +31,20 @@ function Jobss() {
         <div className="p-0">
           <TopNavigationBar title={"Jobs"} />
           <div className="rounded-md p-4 mt-2">
+        { data?.length != 0 ? 
         <h2 className="heading2 mt-4 text-center font-bold">
-          All posted jobs
-        </h2>
-
+        All posted jobs 
+        </h2> : 
+        <><img
+        src={Illustration}
+        width={350}
+        height={300}
+        className="block m-auto mt-20"
+        ></img>
+        <h2 className="heading2b text-center mt-12">
+          No Posted Jobs
+        </h2></>
+      }
         <div className="flex gap-8 mt-12 flex-wrap justify-center items-center mb-12">
           {data?.map((e, index) => {
             return (

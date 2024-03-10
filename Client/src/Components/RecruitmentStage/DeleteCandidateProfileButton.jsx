@@ -19,7 +19,7 @@ function DeleteCandidateProfileButton({ id }) {
         "Content-Type": "application/json;charset=UTF-8",
       },
       data: {
-        id: id,
+        id: id._id,
       },
     };
 

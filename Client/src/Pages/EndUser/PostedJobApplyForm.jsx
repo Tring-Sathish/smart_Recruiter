@@ -182,7 +182,7 @@ function PostedJobApplyForm() {
             alt=""
           />
           <p className="line1 text-center mt-4">
-            Your application is subbmited successfully
+            Your application is submited successfully
           </p>
           <button
             onClick={handleGoBack}
@@ -193,7 +193,6 @@ function PostedJobApplyForm() {
         </div>
       ) : undefined}
 
-      {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
       <div
         style={{ display: `${hideForm}` }}
         className="w-4/5 m-auto bg-gray-100 rounded-lg shadows flex flex-wrap gap-6 p-8 mt-12 mb-12"
@@ -215,7 +214,7 @@ function PostedJobApplyForm() {
             name="name"
             required
             autoComplete="on"
-            placeholder="Ali"
+            placeholder="Firstname..."
             value={personalInformation.firstName}
             onChange={(e) => {
               setPersonalInformation((oldValue) => ({
@@ -235,7 +234,7 @@ function PostedJobApplyForm() {
             id="text"
             name="name"
             autoComplete="on"
-            placeholder="Adnan"
+            placeholder="Lastname..."
             value={personalInformation.lastName}
             onChange={(e) => {
               setPersonalInformation((oldValue) => ({
@@ -286,7 +285,7 @@ function PostedJobApplyForm() {
             id="text"
             name="address"
             autoComplete="on"
-            placeholder="G-9/4 ISB"
+            placeholder="ABC..."
             value={personalInformation.address}
             onChange={(e) => {
               setPersonalInformation((oldValue) => ({
@@ -305,7 +304,7 @@ function PostedJobApplyForm() {
             id="text"
             name="address"
             autoComplete="on"
-            placeholder="Islamabad"
+            placeholder="Madurai"
             value={personalInformation.city}
             onChange={(e) => {
               setPersonalInformation((oldValue) => ({
@@ -324,7 +323,7 @@ function PostedJobApplyForm() {
             id="text"
             name="address"
             autoComplete="on"
-            placeholder="0110"
+            placeholder="625012"
             value={personalInformation.zipCode}
             onChange={(e) => {
               setPersonalInformation((oldValue) => ({
@@ -335,7 +334,7 @@ function PostedJobApplyForm() {
           />
         </div>
         {/* ~~~~~ PROFILE PIC UPLOAD UI CODE  ~~~~~~~~*/}
-        <div className="mt-2 flex justify-center m-auto p-4 items-center bg-transparent shadow-md cursor-pointer h-1/2 rounded-md" style={{marginRight: "1%", marginTop: "-15%"}}>
+        <div className="mt-2 flex justify-center m-auto p-4 items-center bg-transparent shadow-md cursor-pointer h-1/2 rounded-md">
           <div
             className="border bg-transparent border-gray-400 border-dashed rounded-md p-4 flex flex-col items-center justify-center
             hover:bg-gray-100

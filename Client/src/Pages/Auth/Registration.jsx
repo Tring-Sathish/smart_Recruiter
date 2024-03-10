@@ -28,9 +28,9 @@ function Registration() {
     email: string()
       .email("*Follow abc@domain.com format")
       .required("*Email is must"),
-    company_name: string()
-      .max(30, "*Name is too long")
-      .required("*Company name is must"),
+    // company_name: string()
+    //   .max(30, "*Name is too long")
+    //   .required("*Company name is must"),
     password: string()
       .max(25, "*password is too long")
       .matches(
@@ -47,7 +47,7 @@ function Registration() {
     f_name: "",
     username: "",
     email: "",
-    company_name: "",
+    // company_name: "",
     password: "",
     confirm_password: "",
   };
@@ -152,6 +152,7 @@ function Registration() {
           </Modal>
 
           <form action="" onSubmit={formik.handleSubmit}>
+          <div className="flex mb-0 input h-10 w-full max-w-xs"></div>
             <div className="py-3 px-8">
               <div className="flex mb-0">
                 <div className="w-1/2 mr-1">
@@ -189,6 +190,7 @@ function Registration() {
                     autoComplete="on"
                     className="input input-bordered h-10 w-4/5 max-w-xs"
                   />
+                  <div></div>
                   {/* ERROR MSG */}
                   {formik.errors.username && formik.touched.username ? (
                     <span className="text-blue-600">
@@ -198,6 +200,7 @@ function Registration() {
                   ) : null}
                 </div>
               </div>
+              <div className=" mb-0 input h-5 w-full "></div>
               <div className="mb-0">
                 <label className="label line1">Email</label>
                 <input
@@ -218,7 +221,7 @@ function Registration() {
                 ) : null}
               </div>
 
-              <div className="mb-0">
+              {/* <div className="mb-0">
                 <label className="label line1">
                   Company Name{" "}
                   {formik.errors.company_name && formik.touched.company_name ? (
@@ -239,9 +242,9 @@ function Registration() {
                   name="company_name"
                   id="company_name"
                 />
-                {/* ERROR MSG */}
-              </div>
-
+                {/* ERROR MSG 
+              </div> */}
+              <div className="flex mb-0 input h-5 w-full max-w-xs"></div>
               <div className="flex mb-0">
                 <div className="w-1/2 mr-1">
                   <label className="label line1 block " htmlFor="password">
@@ -294,6 +297,8 @@ function Registration() {
                   ) : null}
                 </div>
               </div>
+              <div className="flex mb-0 input h-10 w-full max-w-xs"></div>
+
             </div>
             {/* Error message part */}
             {error == null ? null : (

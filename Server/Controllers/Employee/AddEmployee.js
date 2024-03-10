@@ -39,7 +39,6 @@ const AddEmployee = async (req, res) => {
     }
     
     const organizaion = await OrganizationModal.findById(org_id);
-    console.log(45,organizaion);
     if (organizaion) {
 
         const employee = await new employees({
