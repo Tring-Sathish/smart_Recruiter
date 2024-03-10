@@ -128,7 +128,7 @@ const CandidateSchema = new mongoose.Schema({
     },
     interview_link: {
         type: String,
-        default: 'http:zoom.meet.com/783'
+        default: 'https://meet.google.com/sgy-oxkp-bfy'
     },
     feedback_form: {
         type: [Number],

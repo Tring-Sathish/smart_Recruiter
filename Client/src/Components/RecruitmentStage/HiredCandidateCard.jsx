@@ -13,7 +13,7 @@ function HiredCandidates({ id }) {
 
   const [candidate, setCandidate] = useState();
   const [description, setDiscription] = useState();
-  const [emailTitle, setEmailTitle] = useState();
+  const [emailTitle, setEmailTitle] = useState("Congrats you are Hired");
   const [emailList, setEmailList] = useState([]);
   const [imageSrc, setImageSrc] = useState("http://127.0.0.1:8081/uploads/");
   const [jobInfo, setJobInfo] = useState({
@@ -25,6 +25,7 @@ function HiredCandidates({ id }) {
   const [successMsg, setSuccessMsg] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   useEffect(() => {
+    setDiscription(`<h3>Hi congrats you are hired for the <b>${jobInfo?.job_title}</b> role. Wellcome to our team.<br>Thank you!...</h3><br><br>Regards,<br>Smart Recruiter`);
     const getCandidates = async () => {
       const options = {
         url: "http://localhost:8080/details/active/hired",
@@ -41,8 +42,10 @@ function HiredCandidates({ id }) {
           if (response.status == 200) {
             setCandidate(response.data.getUser);
             setJobInfo((e) => ({
-              job_id: response.data[0]?.jobID,
+              job_id: response.data?.job?._id,
+              job_title: response.data?.job?.jobPosition
             }));
+            console.log(response.data.job);
           } else {
             alert("something went wrong , try again");
           }
