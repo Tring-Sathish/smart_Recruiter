@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LeftMenuBar from "../../Components/Dashboard/LeftMenuBar";
 import TopNavigationBar from "../../Components/Dashboard/TopNavigationBar";
@@ -7,11 +8,16 @@ function AddNewEmployee() {
 
   const org_id = localStorage.getItem("organization_id")
   const [data,setData] = useState();
+  const navigate = useNavigate();
   const [employee, setEmployee] = useState({
     org_id: org_id,
     name: "",
     email: "",
-    // role: "",
+    role: "",
+    skill: "",
+    education: "",
+    experience: "",
+    performance: ""
   });
   
   
@@ -32,11 +38,12 @@ function AddNewEmployee() {
         // console.log(" i am running");
         console.log(response.data);
         setData(response.data)
-        
+        alert("Employee Added");
       })
       .catch((e) => {
         alert("Something Wrong");
       });
+      navigate("/employees");
   }
 
   return (
@@ -93,31 +100,80 @@ function AddNewEmployee() {
             </label>
             <input
               type="text"
-              placeholder="abc@gmail.com"
+              placeholder="Developer"
               className="input input-bordered w-full max-w-xs"
-              value={employee.email}
+              value={employee.role}
                 onChange={(e) =>
                   setEmployee((old) => ({
                     ...old,
-                    email: e.target.value,
+                    role: e.target.value,
+                  }))
+                }
+            />
+            <label className="label">
+              <span className="label-text heading4">Skills </span>
+            </label>
+            <input
+              type="text"
+              placeholder="HTML,CSS"
+              className="input input-bordered w-full max-w-xs"
+              value={employee.skill}
+                onChange={(e) =>
+                  setEmployee((old) => ({
+                    ...old,
+                    skill: e.target.value,
+                  }))
+                }
+            />
+            <label className="label">
+              <span className="label-text heading4">Education </span>
+            </label>
+            <input
+              type="text"
+              placeholder="B.Sc/M.Sc"
+              className="input input-bordered w-full max-w-xs"
+              value={employee.education}
+                onChange={(e) =>
+                  setEmployee((old) => ({
+                    ...old,
+                    education: e.target.value,
+                  }))
+                }
+            />
+            <label className="label">
+              <span className="label-text heading4">Experience </span>
+            </label>
+            <input
+              type="text"
+              placeholder="1..."
+              className="input input-bordered w-full max-w-xs"
+              value={employee.experience}
+                onChange={(e) =>
+                  setEmployee((old) => ({
+                    ...old,
+                    experience: e.target.value,
                   }))
                 }
             />
 
-            {/* <label className="label">
-              <span className="label-text heading4">Select role:</span>
+            <label className="label">
+              <span className="label-text heading4">Performance </span>
             </label>
             <select className="select select-bordered"
             onChange={(e) =>
-              setTeamDetails((old) => ({ ...old, role: e.target.value }))
+              // setTeamDetails((old) => ({ ...old, role: e.target.value }))
+              setEmployee((old) => ({
+                ...old,
+                performance: e.target.value,
+              }))
             }>
               <option disabled selected>
                 Pick one
               </option>
-              <option>Medium Level</option>
-              <option>High Level</option>
-              <option>Low Level</option>
-            </select> */}
+              <option>Good</option>
+              <option>Average</option>
+              <option>Low</option>
+            </select>
           </div>
           <button className="btn text-center m-auto block border-none bg-primary mt-8"
           onClick={handlesubmit}>

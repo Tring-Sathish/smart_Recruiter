@@ -18,7 +18,7 @@ const GetHiredCandidate = async (req, res, next) => {
                 _id: id
             }
         );
-        if (getUser && job) {
+        if (getUser) {
             return res.status(200).json({ job: job, getUser: getUser });
         } else {
             return res.status(404).json({ message: "No user found" });

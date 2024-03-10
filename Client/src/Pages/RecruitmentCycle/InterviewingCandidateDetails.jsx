@@ -297,7 +297,7 @@ function InterviewingCandidateDetails() {
 
                 <h2 className="heading4 ml-4 mt-8">Generated URL:</h2>
                 <input
-                  className="bg-blue-50 ml-24 p-1 rounded-lg indent-3"
+                  className="bg-blue-50 ml-40 p-1 w-50"
                   type="url"
                   name=""
                   id=""

@@ -105,7 +105,7 @@ function HomePage() {
               <h2>
                 <div className="p-6">
                   <h2 className="mt-2 heading2 ">
-                    {organizationData?.company_name}
+                    {organizationDeatails[2][1]}
                   </h2>
                   {/* // ~~ To show departments */}
                   <div className="flex flex-wrap gap-6 items-center justify-center text-center mt-12">

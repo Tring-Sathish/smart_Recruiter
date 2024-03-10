@@ -15,6 +15,7 @@ function HiredCandidates({ id }) {
   const [description, setDiscription] = useState();
   const [emailTitle, setEmailTitle] = useState();
   const [emailList, setEmailList] = useState([]);
+  const [imageSrc, setImageSrc] = useState("http://127.0.0.1:8081/uploads/");
   const [jobInfo, setJobInfo] = useState({
     job_id: "",
     organization_name: "",
@@ -38,7 +39,7 @@ function HiredCandidates({ id }) {
       axios(options)
         .then((response) => {
           if (response.status == 200) {
-            setCandidate(response.data);
+            setCandidate(response.data.getUser);
             setJobInfo((e) => ({
               job_id: response.data[0]?.jobID,
             }));
@@ -194,7 +195,7 @@ function HiredCandidates({ id }) {
                 <div className="m-auto ">
                   <img
                     width={150}
-                    src={e?.ResumeURL}
+                    src={imageSrc + e?.profilePic.split("\\")[1]}
                     alt=""
                     className="rounded-full "
                   />

@@ -16,6 +16,21 @@ const empSchema = new mongoose.Schema({
         required: [true, 'Email is required'],
         unique: true
     },
+    role: {
+        type: String,
+    },
+    skill: {
+        type: String,
+    },
+    performance: {
+        type: String,
+    },
+    experience: {
+        type: String,
+    },
+    education: {
+        type: String,
+    },
 });
 
 const Employee = mongoose.model("Employee", empSchema);

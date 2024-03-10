@@ -3,9 +3,9 @@ const employees = require("../../Models/Employees");
 
 const AddEmployee = async (req, res) => {
 
-    const { name, email, org_id } = req.body;
+    const { name, email, org_id, role, skill, education, experience, performance } = req.body;
 
-    if (!name || !email || !org_id) {
+    if (!name || !email || !org_id || !role || !skill || !education || !experience || !performance ) {
       return res.status(400).json({ error: "All fields are required." });
     }
 
@@ -45,6 +45,11 @@ const AddEmployee = async (req, res) => {
             org_id: org_id,
             name: name,
             email: email,
+            role: role,
+            skill: skill,
+            performance: performance,
+            experience: experience,
+            education: education
           });
 
           try {
