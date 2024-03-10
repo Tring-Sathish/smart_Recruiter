@@ -32,7 +32,7 @@ const ApplyForJob = async (req, res, next) => {
         const { firstName, lastName, gender, address, city, zipCode } =
             req.body.personalInfo;
 
-        const { institute, level, majors } = req.body.accadamics;
+        const { institute, level, majors, marks } = req.body.accadamics;
 
         const { title, duration, companyName } = req.body.profesional;
 
@@ -49,6 +49,7 @@ const ApplyForJob = async (req, res, next) => {
             city: city,
             zipCode: zipCode,
             institute: institute,
+            marks: marks,
             level: level,
             majors: majors,
             session: accadamicsSession,

@@ -38,6 +38,10 @@ const CandidateSchema = new mongoose.Schema({
         type: String,
         required: true,
     }],
+    marks: [{
+        type: String,
+        required: true,
+    }],
 
     level: [{
         type: String,
