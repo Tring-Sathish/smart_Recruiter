@@ -1,47 +1,67 @@
-# backend/app.py
-from flask import Flask, jsonify
+import pymongo
 
-app = Flask(__name__)
+# Establish a connection to MongoDB
+client = pymongo.MongoClient("mongodb://localhost:27017/")
+db = client["Recruiter"]
+collection = db["candidates"]
 
-# Sample employee data (replace with your actual data retrieval mechanism)
-employees_data = [
-    {"firstName": "Alice", "level": ["M.S"], "majors": ["Data Science"], "duration": [400], "companyName": ["XYZ"]},
-    {"firstName": "Bob", "level": ["B.S"], "majors": ["Computer Science"], "duration": [300], "companyName": ["ABC"]},
-    # Add more employee data
-]
 
-@app.route('/get_sorted_employees', methods=['GET'])
-def get_sorted_employees():
-    weights = {
-        "education": 0.4,
-        "skills": 0.3,
-        "experiences": 0.3,
-    }
+length = 0
+for document in collection.find():
+    print("*******")
+    print(document)
+    length = length + 1
 
-    sorted_employees = []
+data = list(collection.find())  # Convert cursor to list
+print("data", data)
+average_marks_list = []
+for candidate in data:
+    marks = [int(mark) for mark in candidate["marks"]]  # Convert marks from string to integer
+    total_marks = sum(marks)
+    number_of_marks = len(candidate["marks"])
+    average_marks = total_marks / number_of_marks
+    candidate["average_marks"] = average_marks
+    average_marks_list.append(average_marks)
 
-    for employee in employees_data:
-        # Calculate scores for each employee (modify based on your actual data)
-        education_score = 100 if "B.S" in employee["level"] and "Computer Science" in employee["majors"] else 0
-        skills_score = 80  # Adjust based on actual skills assessment
-        experiences_score = 90 if "ABC" in employee["companyName"] and employee["duration"][0] > 300 else 0
+def id3_sort(data):
+    if len(data) <= 1:  # Base case: if the length of data is 0 or 1, return data as it is
+        return data
+    else:
+        pivot = data[0]["average_marks"]
+        
+        # Initialize lists to store candidates based on comparison with pivot
+        less_than_pivot = []
+        equal_to_pivot = []
+        greater_than_pivot = []
+        
+        # Iterate through each candidate to compare their average marks with the pivot
+        for candidate in data:
+            if candidate["average_marks"] < pivot:
+                less_than_pivot.append(candidate)
+            elif candidate["average_marks"] == pivot:
+                equal_to_pivot.append(candidate)
+            else:
+                greater_than_pivot.append(candidate)
+                
+        return id3_sort(less_than_pivot) + equal_to_pivot + id3_sort(greater_than_pivot)
 
-        # Calculate composite score
-        composite_score = (
-            weights["education"] * education_score +
-            weights["skills"] * skills_score +
-            weights["experiences"] * experiences_score
-        )
 
-        # Assign the composite score to the employee
-        employee["compositeScore"] = composite_score
+sorted_data = id3_sort(data)
 
-        sorted_employees.append(employee)
+for candidate in sorted_data:
+    print("Candidate ID:", candidate["firstName"])
+    print("Score :", candidate["average_marks"])
 
-    # Sort employees based on composite score in descending order
-    sorted_employees = sorted(sorted_employees, key=lambda x: x["compositeScore"], reverse=True)
+# Find the candidate with the highest average marks
+max_average_marks = max(average_marks_list)
+candidates_with_max_average_marks = []
+for candidate in sorted_data:
+    if candidate["average_marks"] == max_average_marks:
+        candidates_with_max_average_marks.append(candidate)
 
-    return jsonify(sorted_employees)
-
-if __name__ == '__main__':
-    app.run(debug=True)
+# Find the candidate with the lowest average marks
+min_average_marks = min(average_marks_list)
+candidates_with_min_average_marks = []
+for candidate in sorted_data:
+    if candidate["average_marks"] == min_average_marks:
+        candidates_with_min_average_marks.append(candidate)

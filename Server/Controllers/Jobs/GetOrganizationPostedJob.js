@@ -1,7 +1,7 @@
 const express = require('express');
 const Candidate = require('../../Models/Candidate');
 const app = express();
-
+const { exec } = require('child_process');
 
 const GetOrganizationPostedJobApplicants = async (req, res, next) => {
 
@@ -19,6 +19,14 @@ const GetOrganizationPostedJobApplicants = async (req, res, next) => {
     student.averageMarks = average;
     });
     findApplicants.sort((a, b) => b.averageMarks - a.averageMarks);
+    exec('python C:\\Project\\smart_Recruiter\\Server\\Controllers\\Dashboard\\id3.py', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error: ${error.message}`);
+            return res.status(500).json({ message: "Python script execution failed" });
+        }
+        console.log('Python Working');
+        console.log(`Result: ${stdout}`);
+    });
     if (findApplicants) {
         return res.status(200).json(findApplicants)
     }
