@@ -50,6 +50,7 @@ function PostJob() {
 
   const handleSubmit = async () => {
     // axios POST request
+    setDescription(description.replace(/<\/?p>/g, ''));
     const options = {
       url: "http://localhost:8080/job/post",
       method: "POST",
@@ -63,7 +64,6 @@ function PostJob() {
         org_details: org_data,
       },
     };
-
     axios(options).then((response) => {
       if (response.status == 200) {
         setAPIFetched(true);
@@ -72,7 +72,6 @@ function PostJob() {
       }
     });
   };
-  console.log(formData);
   return (
     <div className="flex bg-white mb-8">
       <div className="hidden sm:block w-2/12 bg-white h-screen">

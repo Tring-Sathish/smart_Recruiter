@@ -13,7 +13,7 @@ const PostJobRouter = async (req, res, next) => {
         numberOfSeats: form.no_of_seats,
         salaryRangeFrom: form.salary_range_from,
         salaryRangeUpto: form.salary_range_upto,
-        job_description: description,
+        job_description: description.replace(/<\/?p>/g, ''),
         city: org_details[0],
         country: org_details[1],
         org_name: org_details[2],
