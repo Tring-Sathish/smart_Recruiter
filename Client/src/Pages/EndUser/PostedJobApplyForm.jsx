@@ -153,7 +153,7 @@ function PostedJobApplyForm() {
 
   const navigate = useNavigate();
   const handleGoBack = () => {
-    navigate("/portal/job");
+    navigate("/portal/org");
   };
 
   // LOADING STATE ANIMATION CODE

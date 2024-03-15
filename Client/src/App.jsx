@@ -17,6 +17,7 @@ import PostJob from "./Pages/CreateJob/PostJob";
 import JobDetails from "./Pages/CreateJob/JobDetails";
 // import PostedJobs from "./Pages/EndUser/postedJobs";
 import Jobss from "./Pages/EndUser/Jobss";
+import JobOrg from "./Pages/EndUser/job_org";
 import PostedJobDescription from "./Pages/EndUser/PostedJobDescription";
 import PostedJobApplyForm from "./Pages/EndUser/PostedJobApplyForm";
 
@@ -122,7 +123,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgetpwd" element={<ForgetPassword />} />
         <Route path="/register" element={<Registration />} />
-        <Route path="/portal/job" element={<Jobss />} />
+        <Route path="/portal/org" element={<JobOrg />} />
+        <Route path="/portal/job/:id" element={<Jobss />} />
         <Route
           path="portal/job/description/:id"
           element={<PostedJobDescription />}
