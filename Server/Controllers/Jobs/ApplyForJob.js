@@ -39,32 +39,6 @@ const ApplyForJob = async (req, res, next) => {
         const { emailAddress, phoneNo, linkedinProfile, gitHubProfile } =
             req.body.contact;
 
-        // -> Storing in the Modal
-        const ApplyingCandidate = await new Candidate({
-            firstName: firstName,
-            lastName: lastName,
-            dob: dateOfBirth,
-            gender: gender,
-            address,
-            city: city,
-            zipCode: zipCode,
-            institute: institute,
-            marks: marks,
-            level: level,
-            majors: majors,
-            session: accadamicsSession,
-            title: title,
-            duration: duration,
-            companyName: companyName,
-            emailAddress: emailAddress,
-            phoneNo: phoneNo,
-            linkedinProfile: linkedinProfile,
-            gitHubProfile: gitHubProfile,
-            profilePic: img_url,
-            ResumeURL: resume_url,
-            jobID: job_id,
-            orgID: org_id,
-        });
         //Finding and updating job applicant_applied to +1
         const findJob = await Job.findById(job_id);
         // ************************
@@ -98,6 +72,32 @@ const ApplyForJob = async (req, res, next) => {
                 findJob.report_male_vs_female.female += 1;
             }
         }
+         // -> Storing in the Modal
+         const ApplyingCandidate = await new Candidate({
+            firstName: firstName,
+            lastName: lastName,
+            dob: dateOfBirth,
+            gender: gender,
+            address,
+            city: city,
+            zipCode: zipCode,
+            institute: institute,
+            marks: marks,
+            level: level,
+            majors: majors,
+            session: accadamicsSession,
+            title: title,
+            duration: duration,
+            companyName: companyName,
+            emailAddress: emailAddress,
+            phoneNo: phoneNo,
+            linkedinProfile: linkedinProfile,
+            gitHubProfile: gitHubProfile,
+            profilePic: img_url,
+            ResumeURL: resume_url,
+            jobID: job_id,
+            orgID: findJob?.org_id,
+        });
         await ApplyingCandidate.save();
         await findJob.save();
     } catch (error) {

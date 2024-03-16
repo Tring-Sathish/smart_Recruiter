@@ -12,6 +12,7 @@ function HiredCandidates({ id }) {
   //   const { width, height } = useWindowSize();
 
   const [candidate, setCandidate] = useState();
+  const [mail, setMail] = useState(false);
   const [description, setDiscription] = useState();
   const [emailTitle, setEmailTitle] = useState("Congrats you are Hired");
   const [emailList, setEmailList] = useState([]);
@@ -25,7 +26,6 @@ function HiredCandidates({ id }) {
   const [successMsg, setSuccessMsg] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
   useEffect(() => {
-    setDiscription(`<h3>Hi congrats you are hired for the <b>${jobInfo?.job_title}</b> role. Wellcome to our team.<br>Thank you!...</h3><br><br>Regards,<br>Smart Recruiter`);
     const getCandidates = async () => {
       const options = {
         url: "http://localhost:8080/details/active/hired",
@@ -56,7 +56,8 @@ function HiredCandidates({ id }) {
     };
 
     getCandidates();
-  }, [0]);
+    setDiscription(`<h3>Hi congrats you are hired for the <b>${jobInfo?.job_title}</b> role. Wellcome to our team.<br>Thank you!...</h3><br><br>Regards,<br>Smart Recruiter`);
+  }, [mail]);
 
   const navigate = useNavigate();
 
@@ -94,7 +95,7 @@ function HiredCandidates({ id }) {
   };
   return (
     <div>
-      <label
+      <label onClick={()=>setMail(!mail)}
         htmlFor="my-modal-3"
         className="
         w-1/4

@@ -30,6 +30,7 @@ function ReccomendidCandidateCard({ id }) {
   }, [0]);
 
   const navigate = useNavigate();
+  const [imageSrc, setImageSrc] = useState("http://127.0.0.1:8081/uploads/");
 
   return (
     <div>
@@ -49,7 +50,7 @@ function ReccomendidCandidateCard({ id }) {
                 <div className="m-auto ">
                   <img
                     width={150}
-                    src={e.ResumeURL}
+                    src={ imageSrc + e?.profilePic.split("\\")[1]}
                     alt=""
                     className="rounded-full "
                   />
