@@ -8,13 +8,9 @@ const OrganizationSchema = new mongoose.Schema({
         required: [true, 'Email is required'],
         unique: true
     },
-
-
     organization_name: {
-
         type: String,
         required: [true, 'Name is required'],
-
     },
     phoneNo: {
         type: Number,
@@ -61,16 +57,7 @@ const OrganizationSchema = new mongoose.Schema({
     yt_url: {
         type: String,
         required: [true, 'YT URL is required'],
-    },
-    
-    // team_members: [{
-
-    //     name: { type: String, required: true },
-    //     email: { type: String, required: true, max: 20 },
-    //     role: { type: String, required: true }
-
-    // }]
-
+    }
 })
 
 
